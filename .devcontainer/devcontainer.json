@@ -1,0 +1,31 @@
+{
+  "build": {
+    "dockerfile": "Dockerfile",
+    "context": ".."
+  },
+
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-vscode.live-server"
+      ],
+      "settings": {
+        "editor.fontSize": 14,
+        "livePreview.serverRoot": "/workspaces/kraken2-tutorial"
+      },
+      "codespaces": {
+        "openFiles": [
+          "README.md"
+        ]
+      }
+    }
+  },
+
+  "remoteEnv": {
+    "KRAKEN2_DB": "/kraken2-db"
+  },
+
+  "forwardPorts": [3000],
+
+  "postCreateCommand": "echo 'Kraken2 tutorial container ready! Run kraken2 --version to verify.' && kraken2 --version"
+}
