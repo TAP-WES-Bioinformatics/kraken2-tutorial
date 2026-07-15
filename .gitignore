@@ -1,0 +1,13 @@
+# Kraken2 per-read output (large, not needed for tutorial)
+*.kraken
+
+# Kraken2 database (downloaded separately; too large for git)
+kraken2-db/
+**/kraken2-db/
+
+# macOS
+.DS_Store
+
+# conda / Python
+*.egg-info/
+__pycache__/
