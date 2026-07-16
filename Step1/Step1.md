@@ -10,15 +10,14 @@ The database used in this tutorial is `k2_viral` — a pre-built database contai
 
 ## The data
 
-This directory contains 50,000 paired-end reads from a real wastewater grab sample collected on **December 23, 2025** from a manhole serving New York City Hospital D (SRR37367583, [CASPER project](https://naobservatory.org/casper/)). The reads are 150 bp Illumina NovaSeq X paired-end reads generated from metatranscriptomic sequencing (cDNA) of the wastewater RNA — a strategy that captures actively transcribed viral genomes and is particularly sensitive for RNA viruses.
-
-This sample is part of CASPER (Coalition for Agnostic Sequencing of Pathogens from Environmental Reservoirs), a national wastewater metagenomic sequencing network ([Justen et al. 2026](https://doi.org/10.64898/2026.03.05.26345726)). Hospital grab samples like this one are collected directly from manholes serving the hospital exclusively, with minimal dilution from other sources — making them especially enriched in pathogens shed by sick and immunocompromised patients. December is peak norovirus and winter respiratory virus season in the Northern Hemisphere. The full run comprised ~163 million read pairs, targeting ~150 million reads as described for December 2025 NYC hospital samples in Justen et al. 2026. At 50,000 reads, we're analyzing a tiny slice — but already enough to detect multiple human-infecting viruses.
+This directory contains 50,000 paired-end reads from a real wastewater grab sample. Hospital grab samples like this one are collected directly from manholes serving the hospital exclusively, with minimal dilution from other sources — making them especially enriched in pathogens shed by sick and immunocompromised patients. December is peak norovirus and winter respiratory virus season in the Northern Hemisphere. The full run comprised ~163 million read pairs, targeting ~150 million reads. At 50,000 reads, we're analyzing a tiny slice — but already enough to detect multiple human-infecting viruses.
 
 Take a look at the first couple of reads from the forward file:
 
 `head -n 8 sample_R1.fastq`
 
 Each read in FASTQ format has four lines:
+
 - Line 1: `@` followed by the read identifier
 - Line 2: the nucleotide sequence
 - Line 3: `+` (spacer)
@@ -33,6 +32,7 @@ Now, classify the reads. Because this is paired-end data, we use the `--paired` 
 `kraken2 --db $KRAKEN2_DB --paired --report sample.report --output sample.kraken sample_R1.fastq sample_R2.fastq`
 
 Let's break down the options:
+
 - `--db $KRAKEN2_DB` — path to the Kraken2 database (pre-set in this environment)
 - `--paired` — tells Kraken2 that the two FASTQ files are paired-end reads
 - `--report sample.report` — writes an aggregated summary table, one row per taxon
@@ -53,6 +53,7 @@ Take a quick look at `sample.kraken`:
 `head sample.kraken`
 
 Each line represents one read pair. The columns are:
+
 1. `C` or `U` — classified or unclassified
 2. Read identifier
 3. NCBI taxonomy ID of the assigned taxon (0 = unclassified)

@@ -4,7 +4,7 @@ Congratulations — you've completed the Kraken2 wastewater metagenomics tutoria
 
 ## What you did
 
-Starting from 50,000 reads from a real hospital wastewater grab sample (NYC Hospital D, December 23, 2025, part of the [CASPER project](https://doi.org/10.64898/2026.03.05.26345726)), you:
+Starting from 50,000 reads from a real hospital wastewater grab sample, you:
 
 1. Classified reads against the Kraken2 k2_viral database to assign viral taxonomy to each read
 2. Interpreted the Kraken2 report format and explored which viruses were detected and at what abundance
