@@ -27,15 +27,19 @@ RUN micromamba create -n kraken2-env -c conda-forge -c bioconda \
       krona && \
     micromamba clean -a -y -f
 
+# System packages: build-essential is required by ktUpdateTaxonomy.sh (compiles
+# Krona's taxonomy lookup helper via `make`); wget/ca-certificates fetch data.
+RUN apt-get update && apt-get install -y --no-install-recommends \
+      build-essential \
+      wget \
+      ca-certificates && \
+    apt-get autoclean && rm -rf /var/lib/apt/lists/*
+
 # Update Krona taxonomy database
 RUN ktUpdateTaxonomy.sh
 
 # Download pre-built k2_viral database
-RUN apt-get update && apt-get install -y --no-install-recommends \
-      wget \
-      ca-certificates && \
-    apt-get autoclean && rm -rf /var/lib/apt/lists/* && \
-    mkdir -p /kraken2-db && \
+RUN mkdir -p /kraken2-db && \
     wget -qO- https://genome-idx.s3.amazonaws.com/kraken/k2_viral_${KRAKEN2_DB_DATE}.tar.gz \
       | tar -xz -C /kraken2-db/
 
