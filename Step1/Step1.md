@@ -10,7 +10,7 @@ The database used in this tutorial is `k2_viral` — a pre-built database contai
 
 ## The data
 
-This directory contains 50,000 paired-end reads from a real wastewater grab sample. Hospital grab samples like this one are collected directly from manholes serving the hospital exclusively, with minimal dilution from other sources — making them especially enriched in pathogens shed by sick and immunocompromised patients. December is peak norovirus and winter respiratory virus season in the Northern Hemisphere. The full run comprised ~163 million read pairs, targeting ~150 million reads. At 50,000 reads, we're analyzing a tiny slice — but already enough to detect multiple human-infecting viruses.
+This directory contains 50,000 paired-end reads from a real municipal wastewater composite. The sample comes from Chicago sewershed CHI-B (serving ~1.1 million people), collected as a 24-hour composite on June 15, 2025. Unlike a PCR assay that asks "is pathogen X present?", metagenomic sequencing asks "what viruses are here?" without knowing in advance which pathogens to look for.
 
 Take a look at the first couple of reads from the forward file:
 

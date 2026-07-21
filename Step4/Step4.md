@@ -34,9 +34,9 @@ Try the following:
 - **Click** on any segment to zoom in on that clade
 - **Hover** over a segment to see read counts and percentages
 - **Click the center** to zoom back out
-- Use the **search box** (top right) to find a specific taxon by name
+- Use the **search box** (top right) to find a specific taxon by name — try searching for `Influenza`, `Cytomegalovirus`, or `Tobamovirus`
 
-What are the most abundant viral families in this sample? Can you find SARS-CoV-2? Are there any unexpected viruses present?
+What are the most abundant viral families in this sample? Can you find Influenza A? How does its abundance compare to bacteriophages and plant viruses?
 
 ## What's next?
 

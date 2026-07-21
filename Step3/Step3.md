@@ -35,9 +35,9 @@ The first column is the number of reads **directly assigned** to that taxon (col
 For example, a line like:
 
 ```
-10	k__Viruses	p__Astroviridae	c__Mamastrovirus	s__Astrovirus_MLB1
+5	k__Viruses	p__Negarnaviricota	c__Insthoviricetes	o__Articulavirales	f__Orthomyxoviridae	g__Alphainfluenzavirus	s__Alphainfluenzavirus_influenzae
 ```
 
-tells Krona that 10 reads were directly assigned to Astrovirus MLB1 — a human astrovirus associated with childhood gastroenteritis — nested inside its full lineage.
+tells Krona that 5 reads were directly assigned to Influenza A — nested inside its full lineage. That's the early-detection signal: a human respiratory virus recovered from an untargeted wastewater metagenome.
 
 When you're ready, `cd ../Step4` to generate the interactive plot!

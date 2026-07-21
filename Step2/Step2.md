@@ -45,7 +45,7 @@ Look at the very first line of the report:
 
 `head -n 1 sample.report`
 
-This tells you what percentage of reads were **not** assigned to any taxon in the k2_viral database. For this sample, approximately 91% of reads are unclassified. That is entirely expected — this is a metatranscriptomic wastewater sample sequencing all RNA present, and the k2_viral database only contains viral genomes. Most reads originate from bacteria, bacteriophage hosts, and other organisms not represented in this database.
+This tells you what percentage of reads were **not** assigned to any taxon in the k2_viral database. For this sample, approximately 85% of reads are unclassified. That is entirely expected — this is a metatranscriptomic wastewater sample sequencing all RNA present, and the k2_viral database only contains viral genomes. Most reads originate from bacteria, bacteriophage hosts, and other organisms not represented in this database.
 
 ## What's in this sample?
 
@@ -54,22 +54,21 @@ Look at the family-level entries in the report and sort by abundance:
 `sort -k1 -rn sample.report | head -30`
 
 You should see:
-- **Caudoviricetes** (Jouyvirus, Tequatrovirus, Peduovirus) — dsDNA bacteriophages; consistently the most abundant classified group in any wastewater sample
+- **Caudoviricetes** (Jouyvirus, Peduovirus, Tequatrovirus) — dsDNA bacteriophages; consistently the most abundant classified group in any wastewater sample
 - **Tobamovirus / Virgaviridae** — this includes [Tomato brown rugose fruit virus (ToBRFV)](https://en.wikipedia.org/wiki/Tomato_brown_rugose_fruit_virus) and [Pepper Mild Mottle Virus (PMMoV)](https://doi.org/10.1128/AEM.01012-16), RNA plant viruses shed in human feces. The CASPER study uses PMMoV and ToBRFV as normalization markers to account for variation in fecal load across samples
 - **Lenarviricota / Leviviricetes** — single-stranded RNA phages (such as MS2), another classic wastewater indicator
-- **Naldaviricetes / Baculoviridae** — insect baculoviruses (you may see *Choristoneura fumiferana* granulovirus, used as a biopesticide). Their presence in the k2_viral report is a reminder that this database contains genomes from **all** viral kingdoms, not just human pathogens
+- **Naldaviricetes / Baculoviridae** — insect baculoviruses. Their presence in the k2_viral report is a reminder that this database contains genomes from **all** viral kingdoms, not just human pathogens
 
-Now filter to look specifically at **vertebrate-infecting virus** families:
+Now filter to look specifically at **human-infecting viruses**:
 
-`grep -E "Caliciviridae|Norovirus|Parvoviridae|Picornaviridae|Hantavir|Bunyaviral|Peribunyavir" sample.report`
+`grep -E "Influenza|Orthomyxoviridae|Cytomegalovirus|Astroviridae|Rotavirus|Aichi|Picornaviridae" sample.report`
 
-This sample was collected on **December 23, 2025** in NYC — peak norovirus season — from hospital sewage where pathogen concentrations are far higher than in diluted municipal influent. The CASPER paper ([Justen et al. 2026](https://doi.org/10.64898/2026.03.05.26345726)) specifically notes that NYC hospital sites diverged from municipal patterns with elevated Picornaviridae. You should find:
+This is where the early-detection idea becomes concrete. You did not tell Kraken2 to look for influenza, CMV, or enteric viruses — you classified against a broad viral database and asked what was there. In this 50,000-read slice you should find:
 
-- **Norovirus GII** (Caliciviridae) — ~40 reads; the leading cause of acute gastroenteritis worldwide, and one of the primary targets of wastewater surveillance. This is the most abundant human-infecting virus in this sample — consistent with December peak norovirus season and the concentrated hospital sewage source
-- **Parvoviridae** — small ssDNA viruses that include human bocavirus and parvovirus B19, commonly shed in feces
-- **Picornaviridae / Aichivirus** — a kobuvirus linked to shellfish-associated gastroenteritis outbreaks globally
-- **Hantaviridae / Bunyavirales** — rodent-associated RNA viruses; their presence in a hospital setting may reflect local rodent activity, diet (rodent-derived food), or cross-contamination — a reminder that wastewater surveillance captures signals from many sources beyond active human infection, as discussed in Justen et al. 2026
+- **Influenza A virus (H3N2)** (Orthomyxoviridae) — ~5 reads. A recognizable human respiratory pathogen recovered without a flu-specific assay. At full CASPER depth (~1.5 billion read pairs), this Chicago CHI-B sample carried a large H3N2 signal; even a tiny subsample is enough to flag it
+- **Human cytomegalovirus (HHV-5)** — ~32 reads. A common human herpesvirus shed by infected individuals; another pathogen you would only see if you weren't limited to a fixed PCR panel
+- **Astroviridae / Rotavirus A / Aichivirus** — sparse enteric hits. Typical of municipal wastewater, and a reminder that vertebrate-infecting viruses are rare relative to phages and plant viruses
 
-This sample has among the highest norovirus fractions in the CASPER dataset for its sample size, making the signal clearly detectable even at 50,000 reads. As noted in Justen et al. 2026, vertebrate-infecting viruses typically represent only ~0.01% of all wastewater reads, but hospital grab samples — closer to the patient source and much less diluted — can show 10–100× higher fractions.
+Vertebrate-infecting viruses typically represent only a tiny fraction of all wastewater reads — often on the order of ~0.01%. Deep untargeted sequencing is what makes those rare signals recoverable. The point of this tutorial sample is not that influenza is the *most* abundant virus here (phages and tobamoviruses dominate), but that a pathogen-agnostic classifier can still surface a recognizable human-infecting virus you weren't specifically targeting.
 
 When you're ready, `cd ../Step3` to convert this report into a format that Krona can read!

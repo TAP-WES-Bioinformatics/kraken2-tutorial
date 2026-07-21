@@ -2,7 +2,7 @@
 
 Welcome to the Kraken2 analysis component of the wastewater metagenomics workshop!
 
-The sample used in this tutorial is a real hospital wastewater grab collected from a manhole serving New York City Hospital D (SRR37367583), part of the [CASPER](https://naobservatory.org/casper/) project. The full dataset and methods are described in [Justen et al. 2026](https://doi.org/10.64898/2026.03.05.26345726).
+The sample used in this tutorial is a real municipal wastewater composite from Chicago sewershed CHI-B (SRR35987655), collected on June 15, 2025 as part of the [CASPER](https://naobservatory.org/casper/) project. The full dataset and methods are described in [Justen et al. 2026](https://doi.org/10.64898/2026.03.05.26345726).
 
 Use the left sidebar to browse files, and click on them to open them in the file viewer. 
 
@@ -45,4 +45,3 @@ mkdir -p ~/kraken2-db
 wget -qO- https://genome-idx.s3.amazonaws.com/kraken/k2_viral_20240112.tar.gz | tar -xz -C ~/kraken2-db/
 export KRAKEN2_DB=~/kraken2-db
 ```
-

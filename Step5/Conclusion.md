@@ -4,12 +4,14 @@ Congratulations — you've completed the Kraken2 wastewater metagenomics tutoria
 
 ## What you did
 
-Starting from 50,000 reads from a real hospital wastewater grab sample, you:
+Starting from 50,000 reads of a real Chicago municipal wastewater sample (CASPER CHI-B, June 15, 2025), you:
 
 1. Classified reads against the Kraken2 k2_viral database to assign viral taxonomy to each read
-2. Interpreted the Kraken2 report format and explored which viruses were detected and at what abundance
+2. Interpreted the Kraken2 report format and found recognizable human-infecting viruses — including Influenza A (H3N2) and human cytomegalovirus — without targeting them in advance
 3. Used `kreport2krona.py` to reshape the report for hierarchical visualization
 4. Generated an interactive Krona sunburst plot to visually explore the viral community composition
+
+That pathogen-agnostic workflow is the core idea behind early detection in wastewater: sequence first, then ask what is present. The same approach, at national scale and billion-read depth, can track known respiratory pathogens and surface unexpected threats.
 
 ## Going further
 
@@ -43,7 +45,7 @@ To classify and visualize multiple samples at once, KronaTools can combine multi
 ktImportText sample1.krona.txt sample2.krona.txt sample3.krona.txt -o combined.krona.html
 ```
 
-This is useful for comparing the viral community composition across different sampling sites or time points.
+This is useful for comparing the viral community composition across different sampling sites or time points — for example, following influenza signals across CASPER sewersheds over a season.
 
 ## Resources
 
